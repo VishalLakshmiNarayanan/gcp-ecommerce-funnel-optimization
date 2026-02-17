@@ -51,10 +51,31 @@ The financial audit provides the baseline for all marketing ROI calculations.
 ![Revenue Table](images/revenue_funnel.png)
 *Figure 4: Revenue metrics including AOV, Revenue per Buyer, and Revenue per Visitor.*
 
-## Key Insights & Recommendations
-* **UX Integrity**: The **80%+ checkout-to-purchase flow** indicates a frictionless technical environment. Redesigning the checkout page is currently unnecessary and high-risk.
-* **Budget Realignment**: Redirect Social Media spend from "Traffic" objectives to "Lead Gen" to capture emails, moving users into the 33%-converting email channel.
-* **Ad Spend Cap**: To maintain a **$30-$40 CAC**, Social Media CPC must remain below **$2.80** based on current performance.
+## Final Actionable Insights
+
+### 1. UX & Website Optimization
+**Findings:** The technical funnel demonstrates elite performance in the final stages.
+* **Frictionless Flow:** Transition from **Checkout to Payment is 80%**, and **Payment to Purchase is 93%**.
+* **High Velocity:** Converted users move from Cart to Purchase in an average of **13.06 minutes**.
+* **Strategy:** **Do not redesign the checkout flow.** The current technical implementation is frictionless; any changes risk breaking a high-performing asset.
+
+### 2. Marketing Channel Strategy
+**Findings:** There is a significant efficiency gap between Email and Social Media traffic.
+
+| Channel | Purchase Conversion Rate | Intent Level |
+| :--- | :--- | :--- |
+| **Email** | **33.0%** | High Intent / Repeat |
+| **Paid Ads** | **21.0%** | Commercial Intent |
+| **Organic** | **17.0%** | Information Intent |
+| **Social** | **7.0%** | Low Intent / Browsers |
+
+* **Email Dominance:** Email is the highest converting channel, outperforming Social by nearly 5x.
+* **Strategy:** **Pivot Social Spend.** Shift budget from "Traffic" objectives toward "Lead Generation" to funnel users into the 33%-converting email list.
+
+### 3. Financial & Revenue Audit
+**Findings:** Actual revenue data necessitates strict adherence to Customer Acquisition Cost (CAC) limits.
+* **AOV Analysis:** The verified **Average Order Value is $107.78**.
+* **Strategy:** **Set a strict $30–$40 CAC limit.** Based on current performance, Social Media ads must maintain a **Cost-Per-Click (CPC) below $2.80** to remain profitable.
 
 ## Key Tools
 * **Google Cloud BigQuery**: Cloud data warehouse and SQL engine.
