@@ -1,0 +1,33 @@
+[{
+  "traffic_source": "organic",
+  "views": "953",
+  "carts": "322",
+  "purchases": "166",
+  "cart_conversion_rate": "34.0",
+  "purchase_conversion_rate": "17.0",
+  "cart_to_purchase_rate": "52.0"
+}, {
+  "traffic_source": "paid_ads",
+  "views": "429",
+  "carts": "162",
+  "purchases": "89",
+  "cart_conversion_rate": "38.0",
+  "purchase_conversion_rate": "21.0",
+  "cart_to_purchase_rate": "55.0"
+}, {
+  "traffic_source": "email",
+  "views": "249",
+  "carts": "160",
+  "purchases": "83",
+  "cart_conversion_rate": "64.0",
+  "purchase_conversion_rate": "33.0",
+  "cart_to_purchase_rate": "52.0"
+}, {
+  "traffic_source": "social",
+  "views": "705",
+  "carts": "100",
+  "purchases": "46",
+  "cart_conversion_rate": "14.0",
+  "purchase_conversion_rate": "7.0",
+  "cart_to_purchase_rate": "46.0"
+}]

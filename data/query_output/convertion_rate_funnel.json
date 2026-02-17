@@ -1,0 +1,12 @@
+[{
+  "stage_1_views": "2336",
+  "stage_2_cart": "744",
+  "view_to_cart_rate": "32.0",
+  "stage_3_checkout": "514",
+  "cart_to_checkout_rate": "69.0",
+  "stage_4_payment": "411",
+  "checkout_to_payment_rate": "80.0",
+  "stage_5_purchase": "384",
+  "payment_to_purchase_rate": "93.0",
+  "overall_conversion_rate": "16.0"
+}]
