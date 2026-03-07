@@ -1,7 +1,7 @@
 # E-Commerce Conversion & Revenue Optimization (GCP BigQuery)
 
 ## Project Background
-In a high-growth e-commerce environment, identifying friction points within the sales funnel is the primary lever for maintaining profitability. This project conducts a comprehensive audit of **2,336 unique user events** to map the end-to-end customer journey—from initial product discovery to final purchase.
+In a high-growth e-commerce environment, identifying friction points within the sales funnel is the primary lever for maintaining profitability. This project conducts a comprehensive audit of **2,336 unique user events** to map the end-to-end customer journey from initial product discovery to final purchase.
 
 The objective was to identify conversion "leaks," evaluate the efficiency of multi-channel marketing spend, and establish data-backed financial guardrails. By transforming raw event logs into business-ready metrics, this analysis provides a strategic roadmap for resource allocation and UX prioritization.
 
@@ -70,8 +70,3 @@ A comprehensive audit of the 5-stage sales funnel reveals an elite technical che
 * **Data Integrity:** All timestamps are processed in UTC; local timezone variations are not accounted for in velocity calculations.
 
 ---
-
-### Contact Information
-* **Analyst**: Vishal Lakshmi Narayanan
-* **Email**: lvishal1607@gmail.com
-* **GitHub**: [@VishalLakshmiNarayanan](https://github.com/VishalLakshmiNarayanan)
