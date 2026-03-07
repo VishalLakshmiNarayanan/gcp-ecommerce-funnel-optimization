@@ -1,88 +1,79 @@
 # E-Commerce Conversion & Revenue Optimization (GCP BigQuery)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GCP: BigQuery](https://img.shields.io/badge/GCP-BigQuery-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/bigquery)
-[![SQL: Standard](https://img.shields.io/badge/SQL-Standard-orange.svg)](https://en.wikipedia.org/wiki/SQL)
+## Project Background
+In a high-growth e-commerce environment, identifying friction points within the sales funnel is the primary lever for maintaining profitability. This project conducts a comprehensive audit of **2,336 unique user events** to map the end-to-end customer journey—from initial product discovery to final purchase.
 
-## Overview
-This project demonstrates a comprehensive e-commerce audit leveraging **Google Cloud Platform (GCP)** to analyze **2,336 unique user events**. By transforming raw event logs into a structured 5-stage sales funnel, this analysis identifies high-intent traffic sources, validates technical checkout efficiency, and establishes data-backed financial guardrails for marketing spend.
+The objective was to identify conversion "leaks," evaluate the efficiency of multi-channel marketing spend, and establish data-backed financial guardrails. By transforming raw event logs into business-ready metrics, this analysis provides a strategic roadmap for resource allocation and UX prioritization.
 
-## Cloud Environment & Architecture
-The analysis was performed natively within the **BigQuery** ecosystem. The data resides in a structured warehouse schema under the project `usereventsanalytics`.
+[**View Technical SQL Implementation & Documentation ↗**](User_analysis.sql)
 
-![Cloud Environment](images/cloud_console.png)
-*Figure 1: BigQuery Workspace showing the `User_analysis` saved query and the `querydata.userevents` table structure.*
+---
 
-## Analytical Methods & Business Logic
+## Data Structure & Overview
+The analysis was executed natively within **Google Cloud BigQuery**. The dataset encompasses event-level logs, marketing attribution metadata, and transaction records.
 
-### 1. Multi-Stage Funnel Engineering
-* **Method**: Utilized **Common Table Expressions (CTEs)** and `COUNT(DISTINCT CASE WHEN...)` logic to build a 5-stage conversion model (View → Cart → Checkout → Payment → Purchase).
-* **Necessity**: Standardizing the user journey into distinct stages allows for the identification of specific "leaks" in the conversion process.
 
-### 2. Marketing Attribution & Efficiency
-* **Method**: Aggregated user events by `traffic_source` to calculate the `purchase_conversion_rate` for Organic, Paid, Email, and Social channels.
-* **Necessity**: Raw traffic volume is a vanity metric. Calculating channel-specific efficiency reveals that **Email (33%)** drastically outperforms **Social (7%)**, justifying a shift in budget allocation.
 
-### 3. Conversion Velocity Analysis
-* **Method**: Applied `TIMESTAMP_DIFF` functions to `MIN` event timestamps to calculate the average minutes between stages.
-* **Necessity**: Understanding the speed of conversion (e.g., **24.06 minutes total**) helps determine the timing for "Abandoned Cart" triggers and real-time lead generation.
+* **User Events:** Unique interaction logs including page views, cart additions, and checkout events.
+* **Marketing Metadata:** Multi-channel attribution tags (Social, Email, Paid, Organic).
+* **Transaction Data:** Revenue values, order completion status, and product IDs.
 
-### 4. Financial Guardrail Modeling
-* **Method**: Integrated revenue data to calculate **Average Order Value (AOV)** and **Revenue Per Visitor (RPV)**.
-* **Necessity**: Setting a strict **Customer Acquisition Cost (CAC)** limit based on an actual **$107.78 AOV** ensures the business remains profitable at every stage of the funnel.
+---
 
-## Data Outputs & Visualization
+## Executive Summary
+A comprehensive audit of the 5-stage sales funnel reveals an elite technical checkout infrastructure but a significant disparity in marketing channel efficiency. While the bottom-of-funnel conversion is exceptionally high (**93% from payment to purchase**), top-of-funnel quality varies by source. **Email** is the primary driver of high-intent traffic (**33% conversion**), whereas **Social Media** serves primarily as a discovery channel with low conversion intent (**7%**). To maintain the current **$107.78 Average Order Value (AOV)**, the business must pivot its social strategy toward lead capture rather than direct-to-sale objectives.
 
-### Sales Funnel & Conversion Rates
-The funnel demonstrates high efficiency at the bottom, with an elite **93% conversion rate** from payment to purchase.
+---
 
-![Conversion Rates Table](images/conversion_rates_funnel.png)
-*Figure 2: SQL Output showing stage-by-stage conversion percentages.*
+## Key Insights & Visualizations
 
-### Marketing Channel Performance
-A clear disparity is identified between high-intent channels (Email) and low-intent "window shoppers" (Social).
+### 1. Funnel Velocity & Technical Health
+* **The Insight:** The transition from **Checkout to Payment is 80%**, and **Payment to Purchase is 93%**.
+* **Conversion Velocity:** Converted users move from Cart to Purchase in an average of **13.06 minutes**.
+* **Stakeholder Impact:** The technical funnel is frictionless. The rapid conversion speed indicates that high-intent users face no significant UI/UX barriers at the point of sale.
 
-![Source Performance Table](images/source_funnel.png)
-*Figure 3: Comparison of traffic volume vs. actual purchase efficiency by source.*
+![Sales Funnel Performance](images/conversion_rates_funnel.png)
+*Figure 1: 5-Stage Conversion Funnel and Drop-off Analysis*
 
-### Revenue & Unit Economics
-The financial audit provides the baseline for all marketing ROI calculations.
+### 2. Multi-Channel Attribution Efficiency
+* **The Insight:** Conversion rates vary by nearly 5x across acquisition channels.
+    * **Email:** 33.0% (High Intent / Retention)
+    * **Paid Ads:** 21.0% (Commercial Intent)
+    * **Social:** 7.0% (Discovery / Browsing)
+* **Stakeholder Impact:** Social Media currently drives volume but lacks conversion efficiency. The high performance of Email suggests a powerful secondary conversion engine that should be fed more top-of-funnel leads.
 
-![Revenue Table](images/revenue_funnel.png)
-*Figure 4: Revenue metrics including AOV, Revenue per Buyer, and Revenue per Visitor.*
+![Marketing Channel Comparison](images/source_funnel.png)
+*Figure 2: Purchase Conversion Rate by Traffic Source*
 
-## Final Actionable Insights
+### 3. Unit Economics & Profitability
+* **The Insight:** The verified **Average Order Value (AOV) is $107.78**, with a **Revenue Per Visitor (RPV) of $17.72**.
+* **Stakeholder Impact:** These benchmarks define the ceiling for Customer Acquisition Costs (CAC). Any marketing campaign exceeding these limits will result in a net loss per user.
 
-### 1. UX & Website Optimization
-**Findings:** The technical funnel demonstrates elite performance in the final stages.
-* **Frictionless Flow:** Transition from **Checkout to Payment is 80%**, and **Payment to Purchase is 93%**.
-* **High Velocity:** Converted users move from Cart to Purchase in an average of **13.06 minutes**.
-* **Strategy:** **Do not redesign the checkout flow.** The current technical implementation is frictionless; any changes risk breaking a high-performing asset.
+![Revenue Metrics](images/revenue_funnel.png)
+*Figure 3: Financial Audit - AOV and Revenue per Visitor*
 
-### 2. Marketing Channel Strategy
-**Findings:** There is a significant efficiency gap between Email and Social Media traffic.
+---
 
-| Channel | Purchase Conversion Rate | Intent Level |
-| :--- | :--- | :--- |
-| **Email** | **33.0%** | High Intent / Repeat |
-| **Paid Ads** | **21.0%** | Commercial Intent |
-| **Organic** | **17.0%** | Information Intent |
-| **Social** | **7.0%** | Low Intent / Browsers |
+## Strategic Recommendations
 
-* **Email Dominance:** Email is the highest converting channel, outperforming Social by nearly 5x.
-* **Strategy:** **Pivot Social Spend.** Shift budget from "Traffic" objectives toward "Lead Generation" to funnel users into the 33%-converting email list.
+### For the Marketing Team:
+* **Pivot Social Strategy:** Shift Social Media budget from "Direct Sales" to "Lead Generation/Email Capture." Funneling social browsers into the 33%-converting email track will yield a higher long-term ROI.
+* **Ad Spend Guardrails:** Establish a strict **$30–$40 CAC limit**. Based on the 7% conversion floor for social traffic, CPC must remain **below $2.80** to maintain profitability.
 
-### 3. Financial & Revenue Audit
-**Findings:** Actual revenue data necessitates strict adherence to Customer Acquisition Cost (CAC) limits.
-* **AOV Analysis:** The verified **Average Order Value is $107.78**.
-* **Strategy:** **Set a strict $30–$40 CAC limit.** Based on current performance, Social Media ads must maintain a **Cost-Per-Click (CPC) below $2.80** to remain profitable.
+### For the Product/UX Team:
+* **Infrastructure Preservation:** Maintain the current checkout UI/UX. The 93% terminal conversion rate is an "elite" benchmark; avoid structural changes that could disrupt this high-performing asset.
+* **Abandoned Cart Optimization:** Use the **24-minute average conversion time** to trigger automated re-engagement. Emails triggered at the 30-minute mark for users who exited after "Checkout Start" will target the window of highest intent.
 
-## Key Tools
-* **Google Cloud BigQuery**: Cloud data warehouse and SQL engine.
-* **SQL (Standard SQL)**: Primary language for data transformation and modeling.
-* **VS Code**: Local environment for managing repository structure and JSON exports.
+---
 
-## Contact
-* **Author**: Vishal Lakshmi Narayanan
+## Assumptions & Caveats
+* **Data Recency:** Insights are based on the most recent 30-day window. Longitudinal analysis is recommended to account for month-over-month seasonality.
+* **Attribution Model:** This analysis utilizes last-click attribution. Multi-touch journeys where Social contributes to initial awareness are not fully captured here.
+* **Data Integrity:** All timestamps are processed in UTC; local timezone variations are not accounted for in velocity calculations.
+
+---
+
+### Contact Information
+* **Analyst**: Vishal Lakshmi Narayanan
 * **Email**: lvishal1607@gmail.com
 * **GitHub**: [@VishalLakshmiNarayanan](https://github.com/VishalLakshmiNarayanan)
