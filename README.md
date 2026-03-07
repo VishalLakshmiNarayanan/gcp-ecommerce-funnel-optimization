@@ -5,8 +5,6 @@ In a high-growth e-commerce environment, identifying friction points within the 
 
 The objective was to identify conversion "leaks," evaluate the efficiency of multi-channel marketing spend, and establish data-backed financial guardrails. By transforming raw event logs into business-ready metrics, this analysis provides a strategic roadmap for resource allocation and UX prioritization.
 
-[**View Technical SQL Implementation & Documentation ↗**](User_analysis.sql)
-
 ---
 
 ## Data Structure & Overview
